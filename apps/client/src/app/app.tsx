@@ -1,12 +1,17 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './app.module.scss';
+import {useEffect} from "react";
+import axios from "axios";
 
-import NxWelcome from './nx-welcome';
+const BASE_URL = '/api';
 
 export function App() {
+  useEffect(() => {
+    axios.get(BASE_URL).then(console.log)
+  });
   return (
     <div>
-      <NxWelcome title="client" />
+      <h1>Test</h1>
     </div>
   );
 }
