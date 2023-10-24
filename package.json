@@ -2,11 +2,15 @@
   "name": "@3205-test/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "client": "nx serve client",
+    "server": "export ENVIRONMENT=dev; nx serve server"
+  },
   "private": true,
   "dependencies": {
     "@swc/helpers": "~0.5.2",
     "axios": "^1.5.1",
+    "cors": "^2.8.5",
     "express": "^4.18.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",

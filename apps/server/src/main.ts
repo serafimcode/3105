@@ -1,22 +1,20 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
+import middlewares from "./middleware";
+import usersRouter from "./routes/users.router";
+import {env} from "./environment/env";
+import {App} from "./app";
 
-import express from 'express';
-import * as path from 'path';
-import * as process from "process";
 
-const app = express();
+async function startServer() {
+  const environment = await env();
+  const port = environment.port || 3333;
+  const apiUrl = environment.apiUrl || '/api';
 
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
+  new App(
+    port,
+    [usersRouter],
+    middlewares,
+    apiUrl
+  ).listen()
+}
 
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to server!' });
-});
-
-const port = process.env.PORT || 3333;
-const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api`);
-});
-server.on('error', console.error);
+startServer();
